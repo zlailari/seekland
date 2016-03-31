@@ -1,0 +1,9 @@
+{
+  "name": "seekland",
+  "version": "0.0.1",
+  "description": "Explore peoples' stuff",
+  "dependencies": {
+    "express": "~4.13.4",
+    "socket.io": "~1.2.0"
+  }
+}

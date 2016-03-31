@@ -1,7 +1,9 @@
+
+// Migrate to use World.js instead
 var worldX = 1000;
 var worldY = 400;
 
-var maxXDir = 10;
+var maxXDir = 5;
 var maxYDir = 10;
 
 var Person = function () {

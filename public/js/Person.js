@@ -1,3 +1,8 @@
+var worldX = 1000;
+var worldY = 400;
+
+var maxXDir = 10;
+var maxYDir = 10;
 
 var Person = function () {
     this.x = 200;
@@ -11,6 +16,12 @@ var Person = function () {
     this.left = false;
     this.right = false;
     this.up = false;
+
+    this.jump = false;
+    this.jumpHeight = -20;
+    this.onGround = false;
+
+    this.grav = 2;
 }
 
 function drawPerson(ctx, p) {
@@ -18,13 +29,41 @@ function drawPerson(ctx, p) {
 };
 
 function updatePerson(p) {
-    if (p.left) {
-        p.x -= 2;
+    // Player input movement
+    if (p.left && p.xDir >= -maxXDir) {
+        p.xDir -= 2;
     }
-    if (p.right) {
-        p.x += 2;
+    if (p.right && p.xDir <= maxXDir) {
+        p.xDir += 2;
     }
-    if (p.up) {
-        p.y -= 1;
+
+    // World Contraints
+    if (p.x >= worldX) {
+        p.xDir = 0;
+        p.x = worldX;
     }
+    if (p.y >= worldY && !p.onGround) {
+        p.yDir = 0;
+        p.y = worldY;
+        p.jump = false;
+        p.onGround = true;
+    }
+
+    if (p.y < worldY) {
+        p.yDir += p.grav;
+    }
+
+    if (p.up && !p.jump) {
+        console.log('jump');
+        p.yDir += p.jumpHeight;
+        p.jump = true;
+        p.onGround = false;
+    }
+
+    console.log(JSON.stringify(p));
+    if (p.xDir > 0) { p.xDir--; }
+    if (p.xDir < 0) { p.xDir++; }
+
+    p.y += p.yDir;
+    p.x += p.xDir;
 }

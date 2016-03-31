@@ -43,6 +43,11 @@ io.on('connection', function(socket) {
         socket.emit('socket id', socket.id);
     });
 
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+        delete allPeople[socket.id];
+    });
+
     socket.on('keydown', function(input) {
         var msg = JSON.parse(input)
         var code = msg.body.keyCode;
@@ -94,7 +99,6 @@ function update() {
 
     updatePositions();
 
-    console.log(JSON.stringify(allPeople));
     io.emit('server update', allPeople);
 }
 

@@ -2,8 +2,11 @@
 
 #### Install and Run
 > git clone git@github.com:zlailari/seekland.git
+
 > cd seekland
+
 > npm install
+
 > node server.js
 
 #### Ideas Moving Forward

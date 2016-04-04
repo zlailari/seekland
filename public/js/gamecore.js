@@ -9,12 +9,18 @@ var updateFreq = 50;
 var myPerson = new Person();
 var allPeople = {};
 
+var myWorld = new World();
+var scrollBoundsX, scrollBoundsY;
+
 function init() {
     can = document.getElementById("gamecanvas");
     can.width = $(window).width();
     can.height = $(window).height();
     canW = can.width;
     canH = can.height;
+
+    scrollBoundsX = canW / 2;
+    scrollBoundsY = canH / 2;
 
     ctx = can.getContext('2d');
 
@@ -31,8 +37,41 @@ function run() {
 }
 
 function render() {
+    ctx.save();
+
+    // Horizontal side scroll
+    if (myPerson.x < scrollBoundsX) {
+        myWorld.offsetX = 0;
+    } else if (myPerson.x > myWorld.width - scrollBoundsX) {
+        myWorld.offsetX = myWorld.width - 2 * scrollBoundsX;
+    } else {
+        myWorld.offsetX = myPerson.x - scrollBoundsX;
+    }
+
+    // Vertical side scroll
+    if (myPerson.y < scrollBoundsY) {
+        myWorld.offsetY = 0;
+    } else if (myPerson.y > myWorld.height - scrollBoundsY) {
+        myWorld.offsetY = myWorld.height - 2 * scrollBoundsY;
+    } else {
+        myWorld.offsetY = myPerson.y - scrollBoundsY;
+    }
+
+
+    ctx.translate(-myWorld.offsetX, -myWorld.offsetY);
+
     ctx.clearRect(0, 0, can.width, can.height);
+
+    // Check if sidescrolling working
+    var grd = ctx.createLinearGradient(0,0,myWorld.width,myWorld.height);
+    grd.addColorStop(0,"black");
+    grd.addColorStop(1,"white");
+    ctx.fillStyle=grd;
+    ctx.fillRect(0,0, myWorld.width, myWorld.height);
+
     renderPeople();
+
+    ctx.restore();
 }
 
 function renderPeople() {

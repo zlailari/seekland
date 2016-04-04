@@ -22,25 +22,32 @@ var lastTime = Date.now();
 
 var allPeople = {};
 
-
 var includeInThisContext = function(path) {
     var code = fs.readFileSync(path);
     vm.runInThisContext(code, path);
 }.bind(this);
 
 includeInThisContext(__dirname+"/public/js/Person.js");
+includeInThisContext(__dirname+"/public/js/World.js");
 
 app.use(express.static(__dirname + '/public'));
+
+var myWorld = new World();
 
 io.on('connection', function(socket) {
     // nice to know
     console.log('a user connected');
 
-    socket.on('new person', function(newPerson) {
+    socket.on('new person', function() {
         // store new cursor object in server array
+        console.log('new person: ' + socket.id);
+        socket.emit('socket id', socket.id);
+    });
+
+    socket.on('connection established', function(newPerson) {
+        console.log(newPerson);
         allPeople[socket.id] = newPerson;
         allPeople[socket.id].owner = socket.id;
-        socket.emit('socket id', socket.id);
     });
 
     socket.on('disconnect', function(){
@@ -104,7 +111,7 @@ function update() {
 
 function updatePositions() {
     for (var person in allPeople) {
-        updatePerson(allPeople[person]);
+        updatePerson(allPeople[person], myWorld);
     }
 }
 

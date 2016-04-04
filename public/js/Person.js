@@ -20,17 +20,18 @@ var Person = function () {
     this.up = false;
 
     this.jump = false;
-    this.jumpHeight = -20;
+    this.jumpHeight = -50;
     this.onGround = false;
 
     this.grav = 2;
 }
 
 function drawPerson(ctx, p) {
+    ctx.fillStyle = "black";
     ctx.fillRect(p.x, p.y, p.size, p.size);
 };
 
-function updatePerson(p) {
+function updatePerson(p, world) {
     // Player input movement
     if (p.left && p.xDir >= -maxXDir) {
         p.xDir -= 2;
@@ -40,18 +41,23 @@ function updatePerson(p) {
     }
 
     // World Contraints
-    if (p.x >= worldX) {
+    if (p.x >= (world.width - p.size) && p.xDir > 0) {
         p.xDir = 0;
-        p.x = worldX;
+        p.x = world.width - p.size;
     }
-    if (p.y >= worldY && !p.onGround) {
+    if (p.x <= 0 && p.xDir < 0) {
+        p.xDir = 0;
+        p.x = 0;
+    }
+
+
+    if (p.y >= (world.height - p.size) && !p.onGround) {
         p.yDir = 0;
-        p.y = worldY;
+        p.y = world.height - p.size;
         p.jump = false;
         p.onGround = true;
     }
-
-    if (p.y < worldY) {
+    if (p.y < (world.height - p.size)) {
         p.yDir += p.grav;
     }
 

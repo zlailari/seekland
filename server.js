@@ -28,6 +28,7 @@ var includeInThisContext = function(path) {
 }.bind(this);
 
 includeInThisContext(__dirname+"/public/js/Person.js");
+includeInThisContext(__dirname+"/public/js/Platform.js");
 includeInThisContext(__dirname+"/public/js/World.js");
 
 app.use(express.static(__dirname + '/public'));
@@ -106,7 +107,7 @@ function update() {
 
     updatePositions();
 
-    io.emit('server update', allPeople);
+    io.emit('server update', allPeople, myWorld.platforms);
 }
 
 function updatePositions() {

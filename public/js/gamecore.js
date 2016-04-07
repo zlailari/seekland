@@ -14,10 +14,12 @@ var scrollBoundsX, scrollBoundsY;
 
 function init() {
     can = document.getElementById("gamecanvas");
-    can.width = $(window).width();
-    can.height = $(window).height();
-    canW = can.width;
-    canH = can.height;
+
+    var canW = $(window).width() > myWorld.width ? myWorld.width : $(window).width();
+    var canH = $(window).height() > myWorld.height ? myWorld.height: $(window).height();
+
+    can.width = canW;
+    can.height = canH;
 
     scrollBoundsX = canW / 2;
     scrollBoundsY = canH / 2;
@@ -70,8 +72,15 @@ function render() {
     ctx.fillRect(0,0, myWorld.width, myWorld.height);
 
     renderPeople();
+    renderPlatform();
 
     ctx.restore();
+}
+
+function renderPlatform() {
+    for (var plat in myWorld.platforms) {
+        drawPlatform(ctx, myWorld.platforms[plat]);
+    }
 }
 
 function renderPeople() {

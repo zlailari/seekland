@@ -50,17 +50,31 @@ function updatePerson(p, world) {
         p.x = 0;
     }
 
-
     if (p.y >= (world.height - p.size) && !p.onGround) {
         p.yDir = 0;
         p.y = world.height - p.size;
         p.jump = false;
         p.onGround = true;
     }
+
     if (p.y < (world.height - p.size)) {
         p.yDir += p.grav;
     }
 
+    // Platforms
+    for (var i = 0; i < world.platforms.length; i++) {
+        if (p.y > world.platforms[i].y &&
+             p.y < world.platforms[i].y + world.platforms[i].height &&
+             p.x > world.platforms[i].x &&
+             p.x < world.platforms[i].x + world.platforms[i].width) {
+            p.yDir = 0;
+            p.y = world.platforms[i].y - p.size;
+            p.jump = false;
+            p.onGround = true;
+        }
+    }
+
+    // Ground and up overrides
     if (p.up && !p.jump) {
         console.log('jump');
         p.yDir += p.jumpHeight;

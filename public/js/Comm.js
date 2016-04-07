@@ -9,12 +9,14 @@ socket.on('socket id', function(id) {
     socket.emit('connection established', myPerson);
 });
 
-socket.on('server update', function(updatePeople) {
+socket.on('server update', function(updatePeople, updatePlatforms) {
     if (myPerson.id && updatePeople[myPerson.id]) {
         allPeople = updatePeople;
 
         myPerson = allPeople[myPerson.id];
     }
+
+    myWorld.platforms = updatePlatforms;
 });
 
 

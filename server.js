@@ -27,6 +27,7 @@ var includeInThisContext = function(path) {
     vm.runInThisContext(code, path);
 }.bind(this);
 
+includeInThisContext(__dirname+"/public/js/util.js");
 includeInThisContext(__dirname+"/public/js/Person.js");
 includeInThisContext(__dirname+"/public/js/Platform.js");
 includeInThisContext(__dirname+"/public/js/World.js");
@@ -41,19 +42,22 @@ io.on('connection', function(socket) {
 
     socket.on('new person', function() {
         // store new cursor object in server array
-        console.log('new person: ' + socket.id);
         socket.emit('socket id', socket.id);
     });
 
     socket.on('connection established', function(newPerson) {
-        console.log(newPerson);
         allPeople[socket.id] = newPerson;
         allPeople[socket.id].owner = socket.id;
     });
 
-    socket.on('disconnect', function(){
+    socket.on('disconnect', function() {
         console.log('user disconnected');
         delete allPeople[socket.id];
+    });
+
+    socket.on('requestPlatform', function(p) {
+        var plat = new Platform(p.x, p.y, p.width, p.height, '#000000');
+        myWorld.platforms.push(plat);
     });
 
     socket.on('keydown', function(input) {

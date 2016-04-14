@@ -12,11 +12,13 @@ var allPeople = {};
 var myWorld = new World();
 var scrollBoundsX, scrollBoundsY;
 
+loadImages();
+
 function init() {
     can = document.getElementById("gamecanvas");
 
-    var canW = $(window).width() > myWorld.width ? myWorld.width : $(window).width();
-    var canH = $(window).height() > myWorld.height ? myWorld.height: $(window).height();
+    canW = $(window).width() > myWorld.width ? myWorld.width : $(window).width();
+    canH = $(window).height() > myWorld.height ? myWorld.height: $(window).height();
 
     can.width = canW;
     can.height = canH;
@@ -31,6 +33,7 @@ function init() {
     }
 
     socket.emit('new person', myPerson);
+
     setInterval(run, updateFreq);
 }
 
@@ -71,8 +74,11 @@ function render() {
     ctx.fillStyle=grd;
     ctx.fillRect(0,0, myWorld.width, myWorld.height);
 
-    renderPeople();
     renderPlatform();
+    if (isDown && builderRect) {
+        renderBuilder();
+    }
+    renderPeople();
 
     ctx.restore();
 }
@@ -81,6 +87,12 @@ function renderPlatform() {
     for (var plat in myWorld.platforms) {
         drawPlatform(ctx, myWorld.platforms[plat]);
     }
+}
+
+function renderBuilder() {
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(builderRect.x, builderRect.y,
+        builderRect.width, builderRect.height);
 }
 
 function renderPeople() {

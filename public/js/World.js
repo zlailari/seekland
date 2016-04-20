@@ -13,7 +13,9 @@ for (var i = 0; i < 40; i++) {
     tempPlatforms.push(plat);
 }
 
-var World = function (width, height, platforms) {
+var tempSpaces = [];
+
+var World = function (width, height, platforms, spaces) {
     this.width = width || defaultWidth;
     this.height = height || defaultHeight;
 
@@ -21,4 +23,17 @@ var World = function (width, height, platforms) {
     this.offsetY = 0;
 
     this.platforms = platforms || tempPlatforms;
+
+    this.spaceWidth = 300;
+    this.spaceHeight = 200;
+    if (spaces) {
+        this.spaces = spaces;
+    } else {
+        this.spaces = [];
+        for (var i = 0; i < Math.floor(this.width/this.spaceWidth); i++) {
+            var s = new Space(this.spaceWidth * i, this.spaceHeight * i,
+                this.spaceWidth, this.spaceHeight, 0);
+            this.spaces.push(s);
+        }
+    }
 }

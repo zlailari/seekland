@@ -30,6 +30,7 @@ var includeInThisContext = function(path) {
 includeInThisContext(__dirname+"/public/js/util.js");
 includeInThisContext(__dirname+"/public/js/Person.js");
 includeInThisContext(__dirname+"/public/js/Platform.js");
+includeInThisContext(__dirname+"/public/js/Space.js");
 includeInThisContext(__dirname+"/public/js/World.js");
 
 app.use(express.static(__dirname + '/public'));

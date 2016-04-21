@@ -23,3 +23,8 @@
 
 #### TODO
 - Do world stuff on server
+
+Dimensions of Sprites:
+Row 1: 7 boxes of 150px by 150px (right facing)
+Row 2: Text labels, 1050px by 30px
+Row 3: 7 boxes of 150px by 150px (left facing)

@@ -12,6 +12,8 @@ var allPeople = {};
 var myWorld = new World();
 var scrollBoundsX, scrollBoundsY;
 
+var mySpace = {};
+
 loadImages();
 
 function init() {
@@ -78,6 +80,12 @@ function render() {
     if (isDown && builderRect) {
         renderBuilder();
     }
+
+    // if (!$.isEmptyObject(mySpace)) {
+    //     renderMySpace();
+    // }
+    renderAllSpaces();
+
     renderPeople();
 
     ctx.restore();
@@ -98,6 +106,17 @@ function renderBuilder() {
 function renderPeople() {
     for (var person in allPeople) {
         drawPerson(ctx, allPeople[person]);
+    }
+}
+
+function renderMySpace() {
+    ctx.strokeStyle = "green";
+    ctx.strokeRect(mySpace.x, mySpace.y, mySpace.height, mySpace.width);
+}
+
+function renderAllSpaces() {
+    for (var s in myWorld.spaces) {
+        drawSpace(myWorld.spaces[s]);
     }
 }
 

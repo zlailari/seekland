@@ -9,14 +9,29 @@ socket.on('socket id', function(id) {
     socket.emit('connection established', myPerson);
 });
 
-socket.on('server update', function(updatePeople, updatePlatforms) {
+socket.on('server update', function(updatePeople, updatePlatforms, updateSpaces) {
     if (myPerson.id && updatePeople[myPerson.id]) {
         allPeople = updatePeople;
 
         myPerson = allPeople[myPerson.id];
     }
 
+    myWorld.spaces = updateSpaces;
     myWorld.platforms = updatePlatforms;
 });
 
+socket.on('spaceResponse', function(space, spot) {
+    if (space) {
+        mySpace = space;
+        mySpace.spot = spot;
+        editSpace(spot);
+    }
+});
 
+function requestSpace() {
+    socket.emit("requestSpace");
+}
+
+function sendSpaceUpdate(data) {
+    socket.emit("requestSpaceUpdate", data);
+}

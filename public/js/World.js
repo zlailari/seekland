@@ -24,8 +24,8 @@ var World = function (width, height, platforms, spaces) {
 
     this.platforms = platforms || tempPlatforms;
 
-    this.spaceWidth = 300;
-    this.spaceHeight = 200;
+    this.spaceWidth = 1200;
+    this.spaceHeight = 800;
     if (spaces) {
         this.spaces = spaces;
     } else {

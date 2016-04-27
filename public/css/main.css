@@ -6,6 +6,29 @@ body, html {
     font-family: 'Roboto Mono', "Lucida Console", Monaco, monospace;
 }
 
+.coin-counter-panel{
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	padding: 15px;
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: 4px 4px 0px 0px yellow;
+
+	display: inline-block;
+	width: auto;
+}
+
+.coin-counter-panel span{
+	font-weight: 500;
+	font-size: 25px;
+}
+
+.coin-counter-panel img{
+	height: 30px;
+	margin-bottom: -4px;
+}
+
 .intro-popup{
 	margin-left: auto;
 	margin-right: auto;

@@ -12,6 +12,10 @@ loadImages = function() {
     pupsPic.onload = function() {imageLoaded();};
     pupsPic.src = ('img/DogR.png');
 
+    spriteImage = new Image();
+    spriteImage.onload = function() {imageLoaded();};
+    spriteImage.src = ('img/sprite1.png');
+
 };
 
 imageLoaded = function() {

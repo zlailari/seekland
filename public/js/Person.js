@@ -9,6 +9,7 @@ var maxYDir = 10;
 var fallThroughBuffer = 15;
 
 var pupsPic;
+var spriteImage;
 
 var Person = function () {
     this.x = 200;
@@ -17,7 +18,7 @@ var Person = function () {
     this.xDir = 0;
     this.yDir = 0;
 
-    this.size = 60;
+    this.size = 150;
 
     this.left = false;
     this.right = false;
@@ -28,10 +29,53 @@ var Person = function () {
     this.onGround = false;
 
     this.grav = 2;
+
+    this.currentRunImage = 0;
+
+    this.facingRight = true;
 }
 
 function drawPerson(ctx, p) {
-    ctx.drawImage(pupsPic, p.x, p.y, p.size, p.size);
+    if (p.facingRight) {
+        if (p.jump) {
+            if (p.yDir > 0) {
+                // Falling
+                ctx.drawImage(spriteImage, p.size * 6, 0, p.size, p.size,
+                    p.x, p.y, p.size, p.size);
+            } else {
+                // Jumping
+                ctx.drawImage(spriteImage, p.size * 5, 0, p.size, p.size,
+                    p.x, p.y, p.size, p.size);
+            }
+        } else if (p.xDir == 0) {
+            ctx.drawImage(spriteImage, 0, 0, p.size, p.size,
+                p.x, p.y, p.size, p.size);
+        } else {
+            // Running
+            ctx.drawImage(spriteImage, p.size * p.currentRunImage, 0, p.size, p.size,
+                p.x, p.y, p.size, p.size);
+        }
+    } else {
+        if (p.yDir != 0) {
+            if (p.yDir > 0) {
+                // Falling
+                ctx.drawImage(spriteImage, p.size * 6, 180, p.size, p.size,
+                    p.x, p.y, p.size, p.size);
+            } else {
+                // Jumping
+                ctx.drawImage(spriteImage, p.size * 5, 180, p.size, p.size,
+                    p.x, p.y, p.size, p.size);
+            }
+        } else if (p.xDir == 0) {
+            ctx.drawImage(spriteImage, 0, 180, p.size, p.size,
+                p.x, p.y, p.size, p.size);
+        } else {
+            // Running
+            console.log(p.xDir, p.currentRunImage);
+            ctx.drawImage(spriteImage, p.size * p.currentRunImage, 180, p.size, p.size,
+                p.x, p.y, p.size, p.size);
+        }
+    }
 };
 
 function updatePerson(p, world) {
@@ -89,8 +133,22 @@ function updatePerson(p, world) {
         p.onGround = false;
     }
 
-    if (p.xDir > 0) { p.xDir--; }
-    if (p.xDir < 0) { p.xDir++; }
+    if (p.xDir > 0) {
+        p.xDir--;
+        p.facingRight = true;
+        p.currentRunImage++;
+        if (p.currentRunImage > 4) {
+            p.currentRunImage = 1;
+        }
+    }
+    if (p.xDir < 0) {
+        p.xDir++;
+        p.facingRight = false;
+        p.currentRunImage++;
+        if (p.currentRunImage > 4) {
+            p.currentRunImage = 1;
+        }
+    }
 
     p.y += p.yDir;
     p.x += p.xDir;

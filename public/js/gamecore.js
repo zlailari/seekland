@@ -131,7 +131,8 @@ function renderAllSpaces() {
 $('#first-skin').click(function () {
     $('.intro-popup').fadeOut(500);
     init();
-    $('#toolbar').show();
+    // Not supported yet
+    // $('#toolbar').show();
 });
 
 $(document).bind('keydown', function(e) {

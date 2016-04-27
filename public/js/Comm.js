@@ -15,6 +15,8 @@ socket.on('server update',
             allPeople = updatePeople;
 
             myPerson = allPeople[myPerson.id];
+
+            $('.score').text(pad(myPerson.score, 4));
         }
 
         myWorld.spaces = updateSpaces;
@@ -37,4 +39,9 @@ function requestSpace() {
 
 function sendSpaceUpdate(data) {
     socket.emit("requestSpaceUpdate", data);
+}
+
+function pad (str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
 }

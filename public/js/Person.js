@@ -19,7 +19,7 @@ var Person = function () {
     this.yDir = 0;
 
     this.size = 150;
-    this.width = 76;
+    this.width = 77;
     this.height = 150;
 
     this.left = false;

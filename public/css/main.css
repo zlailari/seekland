@@ -2,6 +2,7 @@ body, html {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    background-color: #333;
 
     font-family: 'Roboto Mono', "Lucida Console", Monaco, monospace;
 }
@@ -198,6 +199,7 @@ h2{
 
 #toolbar {
     position: absolute;
+    display: none;
     top: 50px;
     left: 50px;
     z-index: 1;

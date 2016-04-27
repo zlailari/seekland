@@ -120,6 +120,12 @@ function renderAllSpaces() {
     }
 }
 
+$('#first-skin').click(function () {
+    $('.intro-popup').fadeOut(500);
+    init();
+    $('#toolbar').show();
+});
+
 $(document).bind('keydown', function(e) {
     var code = e.keyCode || e.which;
 
@@ -142,4 +148,3 @@ $(document).bind('keyup', function(e) {
     socket.emit('keydown', message);
 });
 
-init();

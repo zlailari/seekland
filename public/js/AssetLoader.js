@@ -1,7 +1,7 @@
 // Loads all game images
 
 assetsLoaded = 0;
-assetsToLoad = 1;
+assetsToLoad = 3;
 
 loadImages = function() {
     // ADD ANY IMAGES TO LOAD HERE.
@@ -12,10 +12,17 @@ loadImages = function() {
     pupsPic.onload = function() {imageLoaded();};
     pupsPic.src = ('img/DogR.png');
 
+    oldSpriteImage = new Image();
+    oldSpriteImage.onload = function() {imageLoaded();};
+    oldSpriteImage.src = ('img/sprite1.png');
+
     spriteImage = new Image();
     spriteImage.onload = function() {imageLoaded();};
-    spriteImage.src = ('img/sprite1.png');
+    spriteImage.src = ('img/skins/roboto/sprite-sheet-roboto.png');
 
+    coinImage = new Image();
+    coinImage.onload = function() {imageLoaded();};
+    coinImage.src = ('img/coin.gif');
 };
 
 imageLoaded = function() {

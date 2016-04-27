@@ -19,6 +19,8 @@ var Person = function () {
     this.yDir = 0;
 
     this.size = 150;
+    this.width = 76;
+    this.height = 150;
 
     this.left = false;
     this.right = false;
@@ -40,40 +42,39 @@ function drawPerson(ctx, p) {
         if (p.jump) {
             if (p.yDir > 0) {
                 // Falling
-                ctx.drawImage(spriteImage, p.size * 6, 0, p.size, p.size,
-                    p.x, p.y, p.size, p.size);
+                ctx.drawImage(spriteImage, p.width * 6, 0, p.width, p.height,
+                    p.x, p.y, p.width, p.height);
             } else {
                 // Jumping
-                ctx.drawImage(spriteImage, p.size * 5, 0, p.size, p.size,
-                    p.x, p.y, p.size, p.size);
+                ctx.drawImage(spriteImage, p.width * 5, 0, p.width, p.height,
+                    p.x, p.y, p.width, p.height);
             }
         } else if (p.xDir == 0) {
-            ctx.drawImage(spriteImage, 0, 0, p.size, p.size,
-                p.x, p.y, p.size, p.size);
+            ctx.drawImage(spriteImage, 0, 0, p.width, p.height,
+                p.x, p.y, p.width, p.height);
         } else {
             // Running
-            ctx.drawImage(spriteImage, p.size * p.currentRunImage, 0, p.size, p.size,
-                p.x, p.y, p.size, p.size);
+            ctx.drawImage(spriteImage, p.width * p.currentRunImage, 0, p.width, p.height,
+                p.x, p.y, p.width, p.height);
         }
     } else {
-        if (p.yDir != 0) {
+        if (p.jump) {
             if (p.yDir > 0) {
                 // Falling
-                ctx.drawImage(spriteImage, p.size * 6, 180, p.size, p.size,
-                    p.x, p.y, p.size, p.size);
+                ctx.drawImage(spriteImage, p.width * 6, 180, p.width, p.height,
+                    p.x, p.y, p.width, p.height);
             } else {
                 // Jumping
-                ctx.drawImage(spriteImage, p.size * 5, 180, p.size, p.size,
-                    p.x, p.y, p.size, p.size);
+                ctx.drawImage(spriteImage, p.width * 5, 180, p.width, p.height,
+                    p.x, p.y, p.width, p.height);
             }
         } else if (p.xDir == 0) {
-            ctx.drawImage(spriteImage, 0, 180, p.size, p.size,
-                p.x, p.y, p.size, p.size);
+            ctx.drawImage(spriteImage, 0, 180, p.width, p.height,
+                p.x, p.y, p.width, p.height);
         } else {
             // Running
-            console.log(p.xDir, p.currentRunImage);
-            ctx.drawImage(spriteImage, p.size * p.currentRunImage, 180, p.size, p.size,
-                p.x, p.y, p.size, p.size);
+            ctx.drawImage(spriteImage, p.width * p.currentRunImage, 180, p.width, p.height,
+                p.x, p.y, p.width, p.height);
         }
     }
 };

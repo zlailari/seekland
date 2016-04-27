@@ -144,6 +144,7 @@ function update() {
     lastTime = currentTime;
 
     updatePositions();
+    updateCoins();
 
     io.emit('server update',
         allPeople,
@@ -151,6 +152,12 @@ function update() {
         myWorld.spaces,
         myWorld.allCoins
     );
+}
+
+function updateCoins() {
+    for (var c in myWorld.allCoins) {
+        updateCoin(myWorld.allCoins[c]);
+    }
 }
 
 function updatePositions() {

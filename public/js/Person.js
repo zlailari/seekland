@@ -89,7 +89,7 @@ function updatePerson(p, world) {
             p.y + p.height > world.allCoins[c].y &&
             p.y < world.allCoins[c].y + world.allCoins[c].size) {
             p.score++;
-            world.allCoins = [generateRandomCoin()];
+            world.allCoins = [generateRandomCoin(world)];
         }
     }
 

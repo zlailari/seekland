@@ -22,7 +22,7 @@ loadImages = function() {
 
     coinImage = new Image();
     coinImage.onload = function() {imageLoaded();};
-    coinImage.src = ('img/coin.gif');
+    coinImage.src = ('img/coin-sprite.png');
 };
 
 imageLoaded = function() {

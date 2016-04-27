@@ -35,6 +35,8 @@ var Person = function () {
     this.currentRunImage = 0;
 
     this.facingRight = true;
+
+    this.score = 0;
 }
 
 function drawPerson(ctx, p) {
@@ -86,7 +88,8 @@ function updatePerson(p, world) {
             p.x < world.allCoins[c].x + world.allCoins[c].size &&
             p.y + p.height > world.allCoins[c].y &&
             p.y < world.allCoins[c].y + world.allCoins[c].size) {
-            console.log('hit coin');
+            p.score++;
+            world.allCoins = [generateRandomCoin()];
         }
     }
 

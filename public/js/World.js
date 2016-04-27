@@ -42,13 +42,9 @@ var World = function (width, height, platforms, spaces) {
 }
 
 function generateRandomCoin(world) {
-    // return new Coin(
-    //     Math.random() * world.width - 100,
-    //     Math.random() * world.height - 100
-    // );
     return new Coin(
-        300,
-        300
+        Math.random() * world.width - 100,
+        Math.random() * world.height - 100
     );
 }
 

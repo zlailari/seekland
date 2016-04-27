@@ -162,10 +162,15 @@ h2{
 	max-height:auto;
 }
 
+#locked-skin{
+	cursor: not-allowed;
+}
+
 #sign-up:hover,#login:hover,.skin-button:hover{
 	margin-top: 2px;
 	margin-left: 2px;
 	box-shadow: 2px 2px 0px 0px white;
+	cursor: pointer;
 }
 
 

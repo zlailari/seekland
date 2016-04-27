@@ -98,6 +98,9 @@ io.on('connection', function(socket) {
         var msg = JSON.parse(input)
         var code = msg.body.keyCode;
         var type = msg.body.pressType;
+        if (!allPeople[socket.id]) {
+            return;
+        }
 
         switch(code) {
             // left or a

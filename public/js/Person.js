@@ -63,19 +63,19 @@ function drawPerson(ctx, p) {
         if (p.jump) {
             if (p.yDir > 0) {
                 // Falling
-                ctx.drawImage(spriteImage, p.width * 6, 180, p.width, p.height,
+                ctx.drawImage(spriteImage, p.width * 6, 170, p.width, p.height,
                     p.x, p.y, p.width, p.height);
             } else {
                 // Jumping
-                ctx.drawImage(spriteImage, p.width * 5, 180, p.width, p.height,
+                ctx.drawImage(spriteImage, p.width * 5, 170, p.width, p.height,
                     p.x, p.y, p.width, p.height);
             }
         } else if (p.xDir == 0) {
-            ctx.drawImage(spriteImage, 0, 180, p.width, p.height,
+            ctx.drawImage(spriteImage, 0, 170, p.width, p.height,
                 p.x, p.y, p.width, p.height);
         } else {
             // Running
-            ctx.drawImage(spriteImage, p.width * p.currentRunImage, 180, p.width, p.height,
+            ctx.drawImage(spriteImage, p.width * p.currentRunImage, 170, p.width, p.height,
                 p.x, p.y, p.width, p.height);
         }
     }
@@ -128,13 +128,13 @@ function updatePerson(p, world) {
 
     // Platforms
     for (var i = 0; i < world.platforms.length; i++) {
-        if (p.y + p.size >= world.platforms[i].y &&
-             p.y + p.size < world.platforms[i].y + fallThroughBuffer &&
-             p.x + p.size > world.platforms[i].x &&
+        if (p.y + p.height >= world.platforms[i].y &&
+             p.y + p.height < world.platforms[i].y + fallThroughBuffer &&
+             p.x + p.width > world.platforms[i].x &&
              p.x < world.platforms[i].x + world.platforms[i].width &&
              p.yDir > 0) {
             p.yDir = 0;
-            p.y = world.platforms[i].y - p.size;
+            p.y = world.platforms[i].y - p.height;
             p.jump = false;
             p.onGround = true;
         }

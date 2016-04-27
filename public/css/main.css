@@ -1,7 +1,176 @@
-
-
 body, html {
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    font-family: 'Roboto Mono', "Lucida Console", Monaco, monospace;
 }
+
+.intro-popup{
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+
+	height: 253px;
+
+	max-width: 700px;
+	padding: 20px;
+
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	position: absolute;
+	top: 30vh;
+
+	background-color: white;
+}
+
+.text-panel{
+	width: 50%;
+	height: 100%;
+	float: left;
+
+    margin-top: -14px;
+}
+
+/*Title of project*/
+h1{
+	font-weight: 500;
+	font-size: 65px;
+	margin: 0px;
+}
+
+/*Description*/
+h5{
+	font-size: 15px;
+	font-weight: 400;
+	margin-top: 5px;
+
+	padding-right: 30px;
+}
+
+/*Credits*/
+h4{
+	font-weight: 400;
+	font-size: 15px;
+}
+
+/*Quickplay*/
+h2{
+	font-size: 35px;
+	margin: 0px;
+	font-weight: 400;
+}
+
+.button-panel{
+	width: 50%;
+	display: inline-block;
+}
+
+.small-buttons{
+	width: 100%;
+}
+
+.button{
+	display: inline-block;
+	width: 41%;
+	padding: 7px;
+
+	text-align: center;
+	font-weight: 500;
+	border: 1px solid black;
+}
+
+#sign-up{
+	float: left;
+	
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 2px 2px 0px 0px blue;
+
+}
+
+#login{
+	float: right;
+	
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 2px 2px 0px 0px yellow;
+
+}
+
+.quick-play-panel{
+	margin-top: 63px;
+	padding: 15px;
+	width: 91%;
+	text-align: left;
+
+	border: 1px solid black;
+
+	position: relative;
+}
+
+.no-login-sticker{
+	width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    line-height: 70px;
+    text-align: center;
+	
+	border: 1px solid blue;
+	color: blue;
+	font-size: 10px;
+	font-weight: 500;
+	background-color: white;
+
+	position: absolute;
+	top: -10px;
+	right: 10px;
+
+	 -ms-transform: rotate(15deg); /* IE 9 */
+    -webkit-transform: rotate(15deg); /* Chrome, Safari, Opera */
+    transform: rotate(15deg);
+}
+
+.no-login-sticker span{
+	display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.skin-panel{
+	width: 100%;
+	margin-top: 17px;
+	display: flex;
+  	justify-content: space-between;
+}
+
+.skin-button{
+	width: 68px;
+	height: 65px;
+	/*margin-right: 4%;
+	height: 50px;
+	display: inline-block;*/
+
+	border: 1px solid black;
+	/* offset-x | offset-y | blur-radius | spread-radius | color */
+	box-shadow: 2px 2px 0px 0px black;
+
+
+}
+
+.skin-button img{
+	max-width:100%;
+	max-height:auto;
+}
+
+#sign-up:hover,#login:hover,.skin-button:hover{
+	margin-top: 2px;
+	margin-left: 2px;
+	box-shadow: 2px 2px 0px 0px white;
+}
+
+
+
+
+
+
+

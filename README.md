@@ -28,3 +28,6 @@ Dimensions of Sprites:
 Row 1: 7 boxes of 77px wide x 150px tall (right facing)
 Row 2: Text labels, 540px wide x 20px tall
 Row 3: 7 boxes of 77px wide x 150px tall (left facing)
+
+Dimensions of Coin Sprite Sheet
+13 frames of 200px x 200px, so 2600px wide.

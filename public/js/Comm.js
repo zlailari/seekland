@@ -9,16 +9,19 @@ socket.on('socket id', function(id) {
     socket.emit('connection established', myPerson);
 });
 
-socket.on('server update', function(updatePeople, updatePlatforms, updateSpaces) {
-    if (myPerson.id && updatePeople[myPerson.id]) {
-        allPeople = updatePeople;
+socket.on('server update',
+    function(updatePeople, updatePlatforms, updateSpaces, updateCoins) {
+        if (myPerson.id && updatePeople[myPerson.id]) {
+            allPeople = updatePeople;
 
-        myPerson = allPeople[myPerson.id];
+            myPerson = allPeople[myPerson.id];
+        }
+
+        myWorld.spaces = updateSpaces;
+        myWorld.platforms = updatePlatforms;
+        myWorld.allCoins = updateCoins;
     }
-
-    myWorld.spaces = updateSpaces;
-    myWorld.platforms = updatePlatforms;
-});
+);
 
 socket.on('spaceResponse', function(space, spot) {
     if (space) {

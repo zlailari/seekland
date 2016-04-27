@@ -32,6 +32,7 @@ includeInThisContext(__dirname+"/public/js/Person.js");
 includeInThisContext(__dirname+"/public/js/Platform.js");
 includeInThisContext(__dirname+"/public/js/Space.js");
 includeInThisContext(__dirname+"/public/js/World.js");
+includeInThisContext(__dirname+"/public/js/Coin.js");
 
 app.use(express.static(__dirname + '/public'));
 
@@ -144,7 +145,12 @@ function update() {
 
     updatePositions();
 
-    io.emit('server update', allPeople, myWorld.platforms, myWorld.spaces);
+    io.emit('server update',
+        allPeople,
+        myWorld.platforms,
+        myWorld.spaces,
+        myWorld.allCoins
+    );
 }
 
 function updatePositions() {
@@ -152,7 +158,6 @@ function updatePositions() {
         updatePerson(allPeople[person], myWorld);
     }
 }
-
 
 setInterval(update, updateRate);
 

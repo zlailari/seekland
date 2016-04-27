@@ -36,4 +36,19 @@ var World = function (width, height, platforms, spaces) {
             this.spaces.push(s);
         }
     }
+
+    this.allCoins = [];
+    this.allCoins.push(generateRandomCoin(this));
 }
+
+function generateRandomCoin(world) {
+    // return new Coin(
+    //     Math.random() * world.width - 100,
+    //     Math.random() * world.height - 100
+    // );
+    return new Coin(
+        300,
+        300
+    );
+}
+

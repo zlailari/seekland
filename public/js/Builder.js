@@ -2,7 +2,7 @@ var isDown = false;
 var mStart, mEnd;
 var builderRect;
 
-$(document).ready(function() {
+function setupBuilder() {
     can.addEventListener("mousedown", function(e) {
         isDown = true;
         mStart = e;
@@ -19,7 +19,7 @@ $(document).ready(function() {
             potentialPlatform(mStart, e);
         }
     });
-});
+}
 
 function potentialPlatform(start, end) {
     if (start.pageX > end.pageX) {

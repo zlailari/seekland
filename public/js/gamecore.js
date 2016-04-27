@@ -33,6 +33,7 @@ function init() {
     if (!ctx) {
         console.log("Error, couldn't make context");
     }
+    setupBuilder();
 
     socket.emit('new person', myPerson);
 
@@ -85,6 +86,7 @@ function render() {
     //     renderMySpace();
     // }
     renderAllSpaces();
+    renderCoins();
 
     renderPeople();
 
@@ -106,6 +108,12 @@ function renderBuilder() {
 function renderPeople() {
     for (var person in allPeople) {
         drawPerson(ctx, allPeople[person]);
+    }
+}
+
+function renderCoins() {
+    for (var c in myWorld.allCoins) {
+        drawCoin(ctx, myWorld.allCoins[c]);
     }
 }
 

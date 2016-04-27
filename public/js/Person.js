@@ -80,6 +80,16 @@ function drawPerson(ctx, p) {
 };
 
 function updatePerson(p, world) {
+    // Running into coin
+    for (var c in world.allCoins) {
+        if (p.x + p.width > world.allCoins[c].x &&
+            p.x < world.allCoins[c].x + world.allCoins[c].size &&
+            p.y + p.height > world.allCoins[c].y &&
+            p.y < world.allCoins[c].y + world.allCoins[c].size) {
+            console.log('hit coin');
+        }
+    }
+
     // Player input movement
     if (p.left && p.xDir >= -maxXDir) {
         p.xDir -= 2;
